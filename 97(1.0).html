@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>九年七班</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            font-family: "华文细黑";
+            background: url("./imgs/5.jpg") no-repeat;
+            background-size: 100%;
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                background-size: 180%;
+            }
+        }
+
+        .cover {
+            margin: 10px auto;
+            border: 2px solid gray;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            width: 50%;
+        }
+
+        #stuname {
+            padding: 5px;
+            font-size: 145px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 78px;
+        }
+
+        .cover button {
+            width: 35%;
+            height: 50px;
+            background: #4490e8;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 13px;
+            outline: none;
+            font-size: larger;
+            color: white;
+        }
+
+        .cover button:active {
+            border: none;
+        }
+
+        img {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45%;
+        }
+    </style>
+</head>
+
+<body>
+<h1>五中九年七班点名系统</h1>
+<div class="cover">
+    <div id="stuname"></div>
+    <button id="startEnd" onclick="startEndBut()">开始</button>
+</div>
+<img src="./imgs/producer.png" alt="">
+<script>
+    let but = document.getElementById("startEnd");
+    let sname = document.getElementById("stuname");
+    const snameArr = ["张婧婧", "冯宝", "张苏日娜", "史明月", "林艳超", "李宏明",
+        "林茹颖", "梁佳明", "高蕊", "孔繁庆", "曲家宇", "徐芳圆", "唐明娜", "袁彤雪", "刘思豪", "高志文", "闫玮华", "高志武", "刘金龙", "曹佳蕊",
+        "郭文静", "丁雅楠", "冯昱杰", "袁婧", "解冰雪", "王永泉", "韩磊", "许新悦", "湛钧皓", "贾颖慧", "胡艳超", "陈阳", "崔佳琪", "尉礼超", "王涛",
+        "张宇婷", "金万鑫", "李阳", "冯宇晗", "经立明", "梁启翔", "钟鸣峰", "张文浩", "宋欣瑶", "郭婧", "陈露", "王梓涵", "郭文宇", "秦浩鸣"]
+    let timer;
+    sname.innerText = snameArr[Math.floor(Math.random() * snameArr.length)];
+
+    function startEndBut() {
+        if (but.innerText == "开始") {
+            but.innerText = "停止";
+            timer = setInterval(function () {
+                let index = Math.floor(Math.random() * snameArr.length);
+                sname.innerText = snameArr[index]
+            }, 100)
+        } else {
+            but.innerText = "开始"
+            clearInterval(timer);
+        }
+    }
+</script>
+</body>
+
+</html>

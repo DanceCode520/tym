@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九年八班</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            padding-top: 10px;
+            background: url("./imgs/5.jpg") no-repeat;
+            background-size: 100%;
+        }
+
+        .cover {
+            float: left;
+            margin: 0.3%;
+            width: 8.48%;
+            position: relative;
+            transition: all 0.5s linear;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .cov {
+            width: 100%;
+            height: 125px;
+            border-radius: 10px;
+            border: 1px solid lightgray;
+            overflow: hidden;
+        }
+
+        .cover1 {
+            background-color: lightgray;
+        }
+
+        .cover2 {
+            background-color: #0081fff0;
+            color: white;
+            font-weight: bolder;
+            display: none;
+            font-size: 40px;
+            text-align: center;
+            vertical-align: middle;
+            height: 125px;
+            line-height: 125px;
+            transform: rotateY(-180deg);
+        }
+
+        .cover1:hover {
+            transform: rotateY(180deg);
+        }
+
+        .flap {
+            transform: rotateY(180deg);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 70px;
+            margin: 0px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        img.my {
+            position: fixed;
+            bottom: 20px;
+            right: 12px;
+            width: 550px;
+            height: 51px;
+        }
+    </style>
+</head>
+<body>
+<img class="my" src="./imgs/producer.png" alt="">
+<h1>五中九年八班点名系统</h1>
+<script>
+    let snameArr = ["王瑞雪", "李庆宇", "高明超", "乌日根", "王智敏", "刘宇剑", "杨颖", "李红丽", "刘时运", "王继岩",
+        "梅佳志", "李凯", "雷力铭", "李双", "刘力伟", "袁士豪", "李闯", "李世佳", "于浩", "王海艳", "杨岚", "孙云飞", "董雨嫣",
+        "王智慧", "刑文欣", "王晓羽", "王雨欣", "冯志文", "王雨静", "王文博", "刘浩", "李锁柱", "葛宇航", "陈宝宇", "杨璐", "李文钞", "于淼",
+        "解海超", "金承蒙", "安欣", "张智伟", "康梦娜", "王建国", "王子敏", "陈永乐", "王文强","洪雨", "吴丹", "潘佳琪", "张天宇","建财"];
+    let imgNames = [];
+    for (let i = 1; i <= snameArr.length; i++) {
+        let name = "./images/" + i + ".jpg";
+        imgNames.push(name);
+    }
+    console.log(imgNames)
+    snameArr = sortArr(snameArr);
+    imgNames = sortArr(imgNames);
+
+    for (let i = 0; i < snameArr.length; i++) {
+        let cover = document.createElement("div");
+        cover.className = "cover";
+        let cover1 = document.createElement('div');
+        cover1.className = "cov cover1";
+        let img = document.createElement("img");
+        img.src = imgNames[i];
+        cover1.appendChild(img);
+        let cover2 = document.createElement('div');
+        cover2.className = "cov cover2";
+        cover2.innerHTML = snameArr[i];
+        cover.appendChild(cover1);
+        cover.appendChild(cover2);
+        cover.onclick = function () {
+            cover.classList.add("flap");
+            cover2.style.display = "block";
+            cover1.style.display = "none";
+        }
+        document.body.appendChild(cover);
+    }
+
+
+    function sortArr(arr) {
+        let newArr = [];
+        for (var i = arr.length + 1; i > 0;) {
+            i--;
+            var rdm = Math.floor(Math.random() * arr.length)
+            if (!newArr.includes(arr[rdm])) {
+                newArr.push(arr[rdm])
+            } else {
+                if (newArr.length == arr.length) {
+                    break;
+                }
+                i++;
+            }
+        }
+        return newArr;
+    }
+</script>
+</body>
+</html>

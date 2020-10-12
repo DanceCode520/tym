@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九年七班</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            padding-top: 10px;
+            background: url("./imgs/5.jpg") no-repeat;
+            background-size: 100%;
+        }
+
+        .cov {
+            width: 100%;
+            height: 130px;
+            border-radius: 10px;
+            border: 1px solid lightgray;
+            overflow: hidden;
+        }
+
+        .cover1 {
+            background-color: #0880d7;
+            box-shadow: 6px 6px 5px #888888;
+            color: white;
+            font-weight: bolder;
+            font-size: 40px;
+            text-align: center;
+            vertical-align: middle;
+            height: 120px;
+            line-height: 120px;
+            float: left;
+            margin: 0.3%;
+            width: 8.36%;
+            cursor: pointer;
+        }
+
+        .flap {
+            transform: rotateY(180deg);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 78px;
+            margin: 5px;
+        }
+
+        .select {
+            color: red;
+            background-color: lightgray;
+        }
+
+        img {
+            position: fixed;
+            bottom: 20px;
+            right: 12px;
+            width: 40%;
+        }
+
+    </style>
+</head>
+<body>
+<h1>五中九年七班点名系统</h1>
+<img src="./imgs/producer.png" alt="">
+<script>
+    let snameArr = ["张婧婧", "冯宝", "张苏日娜", "史明月", "林艳超", "李宏明",
+        "林茹颖", "梁佳明", "高蕊", "孔繁庆", "曲家宇", "徐芳圆", "唐明娜", "袁彤雪", "刘思豪", "高志文", "闫玮华", "高志武", "刘金龙", "曹佳蕊",
+        "郭文静", "丁雅楠", "冯昱杰", "袁婧", "解冰雪", "王永泉", "韩磊", "许新悦", "湛钧皓", "贾颖慧", "胡艳超", "陈阳", "崔佳琪", "尉礼超", "王涛",
+        "张宇婷", "金万鑫", "李阳", "冯宇晗", "经立明", "梁启翔", "钟鸣峰", "张文浩", "宋欣瑶", "郭婧", "陈露", "王梓涵", "郭文宇", "秦浩鸣"]
+
+    let timer;
+    let isStart = false;
+    let divs;
+    let redIndex = 0;
+
+    snameArr = sortArr(snameArr);
+    for (let i = 0; i < snameArr.length; i++) {
+        let cover1 = document.createElement('div');
+        cover1.className = "cov cover1";
+        if (i == redIndex) {
+            cover1.className = "cov cover1 select"
+        }
+        cover1.innerHTML = snameArr[i];
+        cover1.onclick = function () {
+            console.log("click start button")
+            if (!isStart) {
+                timer = setInterval(function () {
+                    divs[redIndex].className = "cov cover1";
+                    redIndex = Math.floor(Math.random() * snameArr.length);
+                    divs[redIndex].className = "cov cover1 select"
+                }, 110)
+            } else {
+                clearInterval(timer);
+            }
+            isStart = !isStart;
+        }
+        document.body.appendChild(cover1);
+        if (i == snameArr.length - 1) {
+            divs = document.getElementsByTagName("div")
+            console.log(divs)
+        }
+    }
+
+    function sortArr(arr) {
+        console.log(arr)
+        let newArr = [];
+        for (var i = arr.length + 1; i > 0;) {
+            i--;
+            var rdm = Math.floor(Math.random() * arr.length)
+            if (newArr.indexOf(arr[rdm]) == -1) {
+                console.log("index===" + arr[rdm])
+                newArr.push(arr[rdm])
+            } else {
+                if (newArr.length == arr.length) {
+                    break;
+                }
+                i++;
+            }
+        }
+        return newArr;
+    }
+</script>
+</body>
+</html>
